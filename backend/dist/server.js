@@ -3,16 +3,18 @@
  * @Author: Ethan && ethan@hanlife02.com
  * @Date: 2025-04-05 00:07:50
  * @LastEditors: Ethan && ethan@hanlife02.com
- * @LastEditTime: 2025-04-05 02:06:08
- * @FilePath: /code/university-credits-app/backend/src/server.ts
+ * @LastEditTime: 2025-04-05 18:58:12
+ * @FilePath: /code/university-credits-app/backend/dist/server.js
  * @Description: Main backend server setup for Express application.
  *
  * Copyright (c) 2025 by Ethan, All Rights Reserved.
  */
 // backend/src/server.ts
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var __importDefault =
+  (this && this.__importDefault) ||
+  function (mod) {
+    return mod && mod.__esModule ? mod : { default: mod };
+  };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express")); // Added NextFunction for error handler type
 const cors_1 = __importDefault(require("cors"));
@@ -31,7 +33,7 @@ app.use(express_1.default.urlencoded({ extended: true })); // Parse URL-encoded 
 // --- Routes ---
 // Simple root route for health check / basic confirmation
 app.get("/", (req, res) => {
-    res.send("Backend Server is Running!");
+  res.send("Backend Server is Running!");
 });
 // Mount API routers under specific base paths
 app.use("/api/auth", auth_routes_1.default); // Authentication routes (register, login, verify, me)
@@ -43,11 +45,13 @@ app.use("/api/stats", stats_routes_1.default);
 // --- Basic Error Handling Middleware ---
 // (This should typically be placed *after* all your routes)
 app.use((err, req, res, next) => {
-    // Added NextFunction type
-    console.error("Unhandled Error:", err.stack); // Log the full error stack
-    res.status(500).json({ message: "Something broke!" }); // Send JSON response for errors
+  // Added NextFunction type
+  console.error("Unhandled Error:", err.stack); // Log the full error stack
+  res.status(500).json({ message: "Something broke!" }); // Send JSON response for errors
 });
 // --- Start the Server ---
 app.listen(port, () => {
-    console.log(`[server]: Backend server is running at http://localhost:${port}`);
+  console.log(
+    `[server]: Backend server is running at http://localhost:${port}`
+  );
 });
