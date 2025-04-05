@@ -1,0 +1,102 @@
+/* frontend/src/App.module.css */
+
+/* 应用主容器，使用 Flexbox 让 mainContent 填充剩余空间 */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 确保应用容器至少撑满整个视口高度 */
+}
+
+/* 导航栏样式 */
+.navbar {
+  display: flex; /* 水平排列子元素 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中对齐 */
+  padding: 0.8rem 1.5rem; /* 内边距 (上下 0.8rem, 左右 1.5rem) */
+  background-color: #ffffff; /* 白色背景 */
+  border-bottom: 1px solid #e0e0e0; /* 底部灰色细线 */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); /* 轻微阴影 */
+  flex-shrink: 0; /* 防止导航栏在 flex 布局中被压缩 */
+}
+
+/* 导航栏品牌/Logo 链接样式 */
+.navBrandLink {
+  font-weight: 600; /* 加粗 */
+  font-size: 1.25rem; /* 稍大字体 */
+  text-decoration: none; /* 去掉下划线 */
+  color: #343a40; /* 深灰色 */
+}
+.navBrandLink:hover {
+  color: #000; /* 悬停时变黑 */
+}
+
+/* 导航栏右侧链接区域 */
+.navLinks {
+  display: flex; /* 水平排列 */
+  align-items: center; /* 垂直居中 */
+  gap: 0.75rem; /* 链接/按钮之间的间距 */
+}
+
+/* 导航栏普通链接样式 (继承 global.css 的 a 标签基础样式) */
+.navLinks a {
+  font-size: 0.95rem;
+  text-decoration: none; /* 覆盖 global.css 的下划线 */
+  color: #007bff; /* 蓝色 */
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.navLinks a:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* 悬停时淡蓝色背景 */
+  text-decoration: none; /* 悬停时也不要下划线 */
+}
+
+/* 导航栏注册按钮/链接的特殊样式 (如果需要) */
+/* .navLinks a:last-child { ... } */
+
+/* 登出按钮样式 (继承 global.css 的 button 基础样式) */
+.logoutButton {
+  font-size: 0.9rem;
+  background-color: #6c757d; /* 灰色背景 */
+  border-color: #6c757d;
+  color: white;
+}
+.logoutButton:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* 主内容区域样式 */
+.mainContent {
+  padding: 2rem; /* 内容区域更大的内边距 */
+  flex-grow: 1; /* 占据所有剩余垂直空间 */
+  /* background-color: #f8f9fa; /* 可以保持和 body 一致或设为白色 */
+}
+
+/* 受保护路由的提示信息样式 */
+.protectedMessage {
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px dashed #adb5bd; /* 虚线边框 */
+  margin: 2rem auto; /* 上下边距，水平居中 */
+  max-width: 500px; /* 限制最大宽度 */
+  background-color: #fff;
+  border-radius: 6px;
+  color: #495057;
+}
+.protectedMessage button {
+  /* 直接给按钮添加样式 */
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  /* 继承 global.css 的按钮样式或覆盖 */
+  /* background-color: #007bff; */
+  /* color: white; */
+  /* border: none; */
+  /* border-radius: 4px; */
+  /* cursor: pointer; */
+  /* transition: background-color 0.2s ease; */
+}
+/* .protectedMessage button:hover { */
+/* background-color: #0056b3; */
+/* } */

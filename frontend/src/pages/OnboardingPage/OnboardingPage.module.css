@@ -1,0 +1,203 @@
+/* frontend/src/pages/OnboardingPage/OnboardingPage.module.css */
+
+/* --- 基本容器 --- */
+.onboardingContainer {
+  max-width: 650px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid #dee2e6;
+}
+
+/* --- 从 LoginPage 复制的样式 --- */
+.title {
+  text-align: center;
+  margin-bottom: 1rem; /* 在 Onboarding 中间距可以小点 */
+  font-size: 1.6rem; /* 调整字体大小 */
+  font-weight: 500;
+  color: #343a40;
+}
+
+.stepIndicator {
+  font-size: 0.9rem;
+  color: #6c757d;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.stepContent {
+  margin-bottom: 2rem;
+}
+.stepTitle {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #343a40;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.formGroup {
+  margin-bottom: 1rem; /* 保持一致的表单间距 */
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.formGroup input {
+  width: 100%;
+  /* 继承 global.css 的 padding, border, radius, font-size */
+}
+.formGroup input:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+/* 总学分输入框特殊样式 */
+.formGroup input#totalCredits {
+  max-width: 200px;
+}
+.formGroup input[type="number"]::-webkit-inner-spin-button,
+.formGroup input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.formGroup input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* 类别要求学分输入框特殊样式 */
+.formGroup.creditsInput input {
+  width: 80px;
+}
+
+/* --- Step 2: 课程类别列表和表单 --- */
+.categoriesList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f3f5;
+}
+.categoryItem:last-child {
+  border-bottom: none;
+}
+.categoryItem span {
+  font-size: 0.95rem;
+}
+.categoryItem .name {
+  font-weight: 500;
+  color: #343a40;
+}
+.categoryItem .credits {
+  color: #007bff;
+  font-weight: 500;
+  margin-left: 0.5rem; /* 添加一点间距 */
+  white-space: nowrap; /* 防止换行 */
+}
+.deleteButton {
+  background: none;
+  border: none;
+  color: #dc3545;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.5rem;
+  line-height: 1;
+  margin-left: 0.5rem; /* 添加一点间距 */
+}
+.deleteButton:hover {
+  color: #a0232f;
+}
+.deleteButton:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* 添加类别的表单 */
+.addCategoryForm {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  align-items: flex-end; /* 或者 center */
+}
+.addCategoryForm .formGroup {
+  margin-bottom: 0;
+  flex-grow: 1;
+}
+.addCategoryForm .addButton {
+  padding: 0.5rem 1rem; /* 调整与输入框大致对齐 */
+  white-space: nowrap;
+  flex-shrink: 0;
+  /* 继承 global.css button */
+}
+/* 对齐按钮和输入框可能需要更细致的调整 */
+
+/* --- 通用按钮和消息 (复制并调整自 Login/Register) --- */
+.navigationButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+.navButton {
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  /* 继承 global.css button */
+  display: flex; /* 为了按钮内的加载指示器 */
+  justify-content: center;
+  align-items: center;
+  min-height: 38px; /* 设定最小高度 */
+  min-width: 100px; /* 设定最小宽度 */
+}
+.navButton:disabled {
+  /* 继承 global.css button:disabled */
+}
+
+/* 加载指示器 (从 LoginPage 复制) */
+.loadingIndicator {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 消息样式 (从 RegisterPage 复制) */
+.message {
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.errorMessage {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  /* composes: message; */ /* 不使用 composes */
+}

@@ -1,0 +1,98 @@
+/*
+ * @Author: Ethan && ethan@hanlife02.com
+ * @Date: 2025-04-05 00:19:49
+ * @LastEditors: Ethan && ethan@hanlife02.com
+ * @LastEditTime: 2025-04-05 02:10:46
+ * @FilePath: /code/university-credits-app/backend/prisma/schema.prisma
+ * @Description: 
+ * 
+ * Copyright (c) 2025 by Ethan, All Rights Reserved. 
+ */
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- THIS IS THE CORRECT SCHEMA TO USE ---
+
+model User {
+  id                  Int      @id @default(autoincrement())
+  email               String   @unique
+  passwordHash        String
+  hasCompletedSetup   Boolean  @default(false)
+  // ADD THIS FIELD: Store the user's overall graduation credit goal
+  graduationTotalCredits Float?  // Optional Float, in case it's not set initially
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  // Relations
+  categories CourseCategory[]
+  courses    Course[]
+}
+
+model CourseCategory {
+  id               Int      @id @default(autoincrement())
+  userId           Int
+  name             String
+  requiredCredits Float // Using Float for credits in case of decimals like 3.5
+  orderIndex       Int? // Optional: for user-defined sorting
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade) // Cascade delete categories if user is deleted
+  courses Course[]
+
+  @@unique([userId, name]) // A user cannot have two categories with the same name
+}
+
+model Course {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  categoryId  Int
+  name        String
+  credits     Float
+  status      CourseStatus // Enum for status
+  grade       Float?       // Percentage grade (nullable)
+  gpaScore    Float?       // Calculated GPA score (nullable)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user     User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category CourseCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade) // Cascade delete courses if category is deleted
+
+  @@index([userId])       // Index for faster lookups by user
+  @@index([categoryId])   // Index for faster lookups by category
+}
+
+model VerificationCode {
+  id             Int      @id @default(autoincrement())
+  email          String   @unique // Only one pending code per email
+  code           String   // The 6-digit code
+  hashedPassword String   // Store the hashed password temporarily
+  expiresAt      DateTime // When the code becomes invalid
+
+  createdAt      DateTime @default(now())
+
+  @@index([email])
+}
+
+// Important: Ensure the User model still has '@unique' on its email field.
+// We only create the User record AFTER verification.
+
+enum CourseStatus {
+  COMPLETED
+  PENDING // Or "PLANNED", "NOT_STARTED" etc.
+}
+// --- END OF CORRECT SCHEMA ---

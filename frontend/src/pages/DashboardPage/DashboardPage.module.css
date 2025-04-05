@@ -1,0 +1,187 @@
+/* frontend/src/pages/DashboardPage/DashboardPage.module.css */
+
+.dashboardContainer {
+  padding: 1rem 0; /* 上下内边距 */
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 0.75rem;
+}
+
+/* 加载和错误状态的提示 */
+.loading,
+.error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+.error {
+  color: #dc3545; /* 错误用红色 */
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  max-width: 600px; /* 限制宽度 */
+  margin: 1rem auto; /* 居中 */
+}
+
+/* 总体统计信息卡片 */
+.summaryCard {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+  margin-bottom: 2rem;
+  display: flex; /* 使用 Flexbox 排列 */
+  justify-content: space-around; /* 分散对齐 */
+  flex-wrap: wrap; /* 允许换行 */
+  gap: 1rem; /* 项目之间的间隙 */
+}
+
+.summaryItem {
+  text-align: center;
+  min-width: 120px; /* 最小宽度 */
+  flex: 1; /* 允许伸缩 */
+}
+
+.summaryLabel {
+  font-size: 0.9rem;
+  color: #6c757d; /* 灰色标签 */
+  margin-bottom: 0.25rem;
+  text-transform: uppercase; /* 大写 */
+  letter-spacing: 0.5px;
+}
+
+.summaryValue {
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #212529;
+}
+.summaryValue small {
+  /* GPA 可能有小数，缩小显示 */
+  font-size: 1rem;
+  color: #495057;
+}
+.summaryValue .gpa {
+  /* 给 GPA 特殊样式（如果需要） */
+  color: #0d6efd; /* 蓝色 */
+}
+
+/* 课程类别统计区域标题 */
+.categoriesTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #343a40;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+/* 课程类别列表 (网格布局) */
+.categoriesGrid {
+  display: grid;
+  /* 创建自适应列，最小 250px，最大 1fr (自动填充) */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem; /* 网格间距 */
+}
+
+/* 单个课程类别卡片 */
+.categoryCard {
+  background-color: #ffffff;
+  padding: 1.25rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+}
+
+.categoryName {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #007bff; /* 类别名称用蓝色 */
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #f1f3f5;
+  padding-bottom: 0.5rem;
+}
+
+.categoryDetail {
+  display: flex;
+  justify-content: space-between; /* 让标签和数值分开 */
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.categoryLabel {
+  color: #6c757d;
+}
+
+.categoryValue {
+  font-weight: 500;
+  color: #343a40;
+}
+
+.categoryValue .remaining {
+  color: #dc3545; /* 剩余学分用红色 */
+  font-weight: bold;
+}
+.categoryValue .complete {
+  /* 如果已完成 */
+  color: #198754; /* 绿色 */
+  font-weight: bold;
+}
+
+/* 可以添加提示信息区域 */
+.infoBox {
+  background-color: #e7f3ff;
+  border: 1px solid #cce0ff;
+  color: #004085;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+/* === 导航按钮区域样式 === */
+.navigationActions {
+  display: flex;
+  justify-content: flex-start; /* 或者 center, flex-end */
+  gap: 1rem; /* 按钮间距 */
+  margin-bottom: 2rem; /* 与下方内容的间距 */
+  padding-bottom: 1rem; /* 底部留白 */
+  border-bottom: 1px solid #eee; /* 分隔线 */
+}
+
+.actionButton {
+  /* 继承 global.css 或自定义 */
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 4px;
+  text-decoration: none; /* 确保 Link 包裹的 button 没有下划线 */
+  display: inline-block; /* 让 Link 表现得像块级 */
+  text-align: center;
+
+  /* 默认样式 (类似次要按钮) */
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: 1px solid #dee2e6;
+}
+.actionButton:hover {
+  background-color: #e2e6ea;
+  border-color: #ced4da;
+  color: #0056b3;
+}
+
+/* 主要按钮样式 */
+.primaryButton {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+.primaryButton:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}

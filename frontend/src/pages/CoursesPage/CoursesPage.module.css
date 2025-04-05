@@ -1,0 +1,247 @@
+/* frontend/src/pages/CoursesPage/CoursesPage.module.css */
+/* 复用 CategoriesPage 的页面容器和标题样式 */
+@import url("../CategoriesPage/CategoriesPage.module.css");
+/* 复用表单和按钮的基本样式 */
+@import url("../LoginPage/LoginPage.module.css");
+
+.pageContainer {
+  /* composes: pageContainer from '../CategoriesPage/CategoriesPage.module.css'; */
+  /* 如果 composes 无效，则复制样式 */
+  max-width: 960px; /* 课程页面可能需要更宽 */
+  margin: 1rem auto;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.title {
+  /* composes: title from '../CategoriesPage/CategoriesPage.module.css'; */
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #343a40;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+.loading,
+.error {
+  /* composes: loading from '../CategoriesPage/CategoriesPage.module.css'; */
+  /* composes: error from '../CategoriesPage/CategoriesPage.module.css'; */
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+  border-radius: 4px; /* 给 error 加圆角 */
+}
+.error {
+  color: #dc3545;
+  border: 1px solid #f5c6cb;
+  background-color: #f8d7da;
+}
+.loadingIndicator {
+  /* composes: loadingIndicator from '../CategoriesPage/CategoriesPage.module.css'; */
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 2rem auto;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sectionTitle {
+  /* composes: sectionTitle from '../CategoriesPage/CategoriesPage.module.css'; */
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+/* 添加/编辑课程表单 */
+.courseForm {
+  display: grid; /* 使用 Grid 布局更灵活 */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 自适应列 */
+  gap: 1rem; /* 网格间距 */
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  border: 1px solid #e9ecef;
+}
+/* 让名称输入框跨越更多列 */
+.formGroup.courseName {
+  grid-column: 1 / span 2; /* 示例：让它占据两列 */
+}
+@media (max-width: 768px) {
+  /* 在小屏幕上只占一列 */
+  .formGroup.courseName {
+    grid-column: auto;
+  }
+  .courseForm {
+    grid-template-columns: 1fr;
+  } /* 小屏幕变单列布局 */
+}
+
+.formGroup {
+  /* composes: formGroup from '../LoginPage/LoginPage.module.css'; */
+  margin-bottom: 0; /* Grid 布局由 gap 控制间距 */
+}
+.formGroup label {
+  /* composes: formGroup label from '../LoginPage/LoginPage.module.css'; */
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+}
+.formGroup input,
+.formGroup select {
+  /* 包括 select 元素 */
+  /* composes: formGroup input from '../LoginPage/LoginPage.module.css'; */
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background-color: #fff; /* 确保背景色 */
+}
+.formGroup input:disabled,
+.formGroup select:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+/* 成绩输入框可以窄一点 */
+.formGroup.gradeInput input {
+  max-width: 100px;
+}
+
+.formActions {
+  grid-column: 1 / -1; /* 让按钮区横跨所有列 */
+  display: flex;
+  justify-content: flex-end; /* 按钮靠右 */
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+.formButton {
+  /* composes: formButton from '../CategoriesPage/CategoriesPage.module.css'; */
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  font-size: 0.9rem; /* 继承 global 或复制 */
+}
+.cancelButton {
+  /* composes: cancelButton from '../CategoriesPage/CategoriesPage.module.css'; */
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+.cancelButton:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* 课程列表样式 (表格或列表) */
+.coursesTable {
+  width: 100%;
+  border-collapse: collapse; /* 合并边框 */
+  margin-top: 1rem;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  overflow-x: auto; /* 允许水平滚动 */
+  display: block; /* 配合 overflow-x */
+}
+
+.coursesTable th,
+.coursesTable td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.95rem;
+  vertical-align: middle; /* 垂直居中 */
+  white-space: nowrap; /* 防止内容换行 */
+}
+
+.coursesTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #495057;
+}
+
+.coursesTable tbody tr:nth-child(even) {
+  /* 斑马条纹 */
+  background-color: #f8f9fa;
+}
+.coursesTable tbody tr:hover {
+  background-color: #e9ecef; /* 悬停高亮 */
+}
+
+.statusCell span {
+  /* 状态单元格样式 */
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px; /* 胶囊形状 */
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.statusCompleted {
+  background-color: #d1e7dd; /* 浅绿 */
+  color: #0f5132;
+}
+.statusPending {
+  background-color: #fff3cd; /* 浅黄 */
+  color: #664d03;
+}
+.gpaCell {
+  /* GPA 单元格 */
+  font-weight: 500;
+  color: #0d6efd; /* 蓝色 */
+}
+
+.courseActions {
+  /* 表格中的操作按钮 */
+  /* composes: categoryActions from '../CategoriesPage/CategoriesPage.module.css'; */
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.actionButton {
+  /* composes: actionButton from '../CategoriesPage/CategoriesPage.module.css'; */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #6c757d;
+}
+.actionButton:hover {
+  color: #343a40;
+}
+.deleteButton {
+  /* composes: deleteButton from '../CategoriesPage/CategoriesPage.module.css'; */
+  /* composes: actionButton; */ /* 如果支持 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #dc3545;
+}
+.deleteButton:hover {
+  color: #a0232f;
+}
+
+/* 同样，移除所有 composes 并用复制的样式替代 */

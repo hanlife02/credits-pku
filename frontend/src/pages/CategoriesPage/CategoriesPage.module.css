@@ -1,0 +1,192 @@
+/* frontend/src/pages/CategoriesPage/CategoriesPage.module.css */
+/* 复用一些通用样式 */
+@import url("../LoginPage/LoginPage.module.css");
+@import url("../OnboardingPage/OnboardingPage.module.css"); /* 为了复用按钮和消息 */
+
+.pageContainer {
+  max-width: 800px; /* 页面可以宽一些 */
+  margin: 1rem auto; /* 上下边距，水平居中 */
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.title {
+  /* composes: title from '../LoginPage/LoginPage.module.css'; */ /* 复用登录页标题 */
+  /* 如果 composes 无效，则复制样式 */
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: #343a40;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+.loading,
+.error {
+  /* 加载和错误提示 */
+  text-align: center;
+  padding: 2rem;
+  color: #6c757d;
+}
+.error {
+  color: #dc3545;
+  border: 1px solid #f5c6cb;
+  background-color: #f8d7da;
+  border-radius: 4px;
+}
+
+.sectionTitle {
+  /* 添加/编辑区域的小标题 */
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #495057;
+}
+
+/* 添加/编辑表单 */
+.categoryForm {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start; /* 顶部对齐 */
+  padding: 1rem;
+  background-color: #f8f9fa; /* 轻微背景色 */
+  border-radius: 6px;
+  margin-bottom: 2rem;
+}
+
+.formGroup {
+  /* composes: formGroup from '../LoginPage/LoginPage.module.css'; */
+  margin-bottom: 0; /* 移除 formGroup 的下边距，在 flex 容器中 */
+  flex-grow: 1; /* 名称输入框占据更多空间 */
+}
+.formGroup label {
+  /* composes: formGroup label from '../LoginPage/LoginPage.module.css'; */
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #495057;
+  font-size: 0.9rem;
+}
+.formGroup input {
+  /* composes: formGroup input from '../LoginPage/LoginPage.module.css'; */
+  width: 100%;
+  padding: 0.6rem 0.75rem; /* 适配 flex 布局 */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+.creditsInput input {
+  /* 学分输入框 */
+  width: 90px; /* 固定宽度 */
+}
+
+.formActions {
+  /* 按钮区域 */
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1.75rem; /* 与 label 大致对齐 */
+  align-items: center;
+}
+.formButton {
+  /* composes: navButton from '../OnboardingPage/OnboardingPage.module.css'; */
+  /* 复制样式 */
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  /* 继承 global */
+}
+.cancelButton {
+  background-color: #6c757d; /* 灰色 */
+  border-color: #6c757d;
+}
+.cancelButton:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* 类别列表 */
+.categoriesList {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0.5rem; /* 调整 padding */
+  border-bottom: 1px solid #f1f3f5;
+  transition: background-color 0.15s ease;
+}
+.categoryItem:last-child {
+  border-bottom: none;
+}
+.categoryItem:hover {
+  background-color: #f8f9fa; /* 悬停背景色 */
+}
+
+.categoryInfo {
+  flex-grow: 1; /* 占据主要空间 */
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* 名字和学分间距 */
+}
+.categoryName {
+  font-weight: 500;
+  color: #343a40;
+  min-width: 150px; /* 给名字一个最小宽度 */
+}
+.categoryCredits {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.categoryActions {
+  /* 编辑和删除按钮 */
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0; /* 防止按钮被压缩 */
+}
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  font-size: 1.1rem; /* 图标大小（可以用 SVG 或文字） */
+  line-height: 1;
+  color: #6c757d;
+}
+.actionButton:hover {
+  color: #343a40;
+}
+.deleteButton {
+  color: #dc3545;
+}
+.deleteButton:hover {
+  color: #a0232f;
+}
+
+.loadingIndicator {
+  /* composes: loadingIndicator from '../LoginPage/LoginPage.module.css'; */
+  /* 复制样式 */
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 3px solid rgba(0, 0, 0, 0.1); /* 淡色边框 */
+  border-top-color: #007bff; /* 蓝色旋转 */
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 1rem auto; /* 居中显示 */
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 注意：移除所有 composes 并用复制的样式替代 */

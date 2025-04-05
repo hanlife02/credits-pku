@@ -4,8 +4,8 @@ services:
     image: postgres:15 # Use a specific version
     restart: always
     environment:
-      POSTGRES_USER: your_db_user # Choose a username
-      POSTGRES_PASSWORD: your_db_password # Choose a strong password
+      POSTGRES_USER: hanlife02 # Choose a username
+      POSTGRES_PASSWORD: Stephencurry18 # Choose a strong password
       POSTGRES_DB: credits_db # Choose a database name
     ports:
       - "5432:5432" # Map host port 5432 to container port 5432
