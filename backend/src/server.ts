@@ -2,7 +2,7 @@
  * @Author: Ethan && ethan@hanlife02.com
  * @Date: 2025-04-05 00:07:50
  * @LastEditors: Ethan && ethan@hanlife02.com
- * @LastEditTime: 2025-04-05 19:04:59
+ * @LastEditTime: 2025-04-05 22:23:43
  * @FilePath: /code/university-credits-app/backend/src/server.ts
  * @Description: Main backend server setup for Express application.
  *
@@ -21,7 +21,7 @@ import statsRoutes from "./api/stats.routes";
 dotenv.config(); // Load environment variables from .env file
 
 const app: Express = express();
-const port = process.env.BACKEND_PORT || 3002;
+const port = process.env.BACKEND_PORT || 3001;
 
 // --- Global Middleware ---
 app.use(cors()); // Enable Cross-Origin Resource Sharing
