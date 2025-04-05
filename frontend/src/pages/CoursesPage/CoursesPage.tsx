@@ -14,7 +14,7 @@ interface Course {
   name: string;
   credits: number;
   categoryId: number;
-  status: "COMPLETED" | "PENDING";
+  status: "COMPLETED" | "PENDING" | "PF";
   grade: number | null;
   gpaScore: number | null;
   createdAt?: string;
@@ -29,7 +29,7 @@ interface CourseFormData {
   name: string;
   credits: string;
   categoryId: string;
-  status: "COMPLETED" | "PENDING";
+  status: "COMPLETED" | "PENDING" | "PF";
   grade: string;
 }
 
@@ -189,7 +189,11 @@ const CoursesPage: React.FC = () => {
       setFormError("请选择一个课程类别。");
       return;
     }
-    if (formData.status !== "COMPLETED" && formData.status !== "PENDING") {
+    if (
+      formData.status !== "COMPLETED" &&
+      formData.status !== "PENDING" &&
+      formData.status !== "PF"
+    ) {
       setFormError("请选择有效的课程状态。");
       return;
     }
@@ -358,6 +362,7 @@ const CoursesPage: React.FC = () => {
               >
                 <option value="PENDING">未完成 (Pending)</option>
                 <option value="COMPLETED">已完成 (Completed)</option>
+                <option value="PF">PF课(PF)</option>
               </select>
             </div>
             {/* 成绩 (仅在状态为 Completed 时显示) */}
