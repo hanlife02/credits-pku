@@ -1,1 +1,20 @@
-test
+{
+"name": "credits-pku",
+"version": "1.0.0",
+"description": "北大学分审核系统",
+"main": "index.js",
+"scripts": {
+"start": "node server/server.js",
+"server": "nodemon server/server.js",
+"client": "npm start --prefix client",
+"dev": "concurrently \"npm run server\" \"npm run client\"",
+"install-all": "npm install && npm install --prefix client"
+},
+"keywords": ["graduation", "credit", "audit", "PKU"],
+"author": "hanlife02",
+"license": "MIT",
+"dependencies": {
+"concurrently": "^8.2.2",
+"nodemon": "^3.0.1"
+}
+}
